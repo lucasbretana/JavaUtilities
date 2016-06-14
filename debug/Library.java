@@ -57,7 +57,7 @@ public abstract class Library{
    * @see show the message in a debug format, only if is in debug mode. Format: In: theClas.theMethod ->DEBUG: msg
    */
   public static void echo(String theClass, String theMethod, String msg, Boolean moreDebug){
-    if (Library.debug && (moreDebug && Library.more)) 
+    if (Library.debug && (moreDebug && Library.more))
       Library.echo(theClass, theMethod, msg);
   }
 
