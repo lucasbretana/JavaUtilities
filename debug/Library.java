@@ -73,7 +73,6 @@ public abstract class Library{
         Library.debug = Integer.parseInt(args[indDeb]) == 1;
       } catch (NumberFormatException ex) {
     	  Library.debug = Boolean.parseBoolean(args[indDeb]);
-	      // Library.echo("debug.Library", "makeStart", ex.getMessage());
         if(!Library.debug) return;
       }
     } else {
@@ -86,19 +85,11 @@ public abstract class Library{
         Library.more = Integer.parseInt(args[indMore]) == 1;
       } catch (NumberFormatException ex) {
     	  Library.more = Boolean.parseBoolean(args[indMore]);
-	      // Library.echo("debug.Library", "makeStart", ex.getMessage());
       }
     } else {
       Library.more = false;
     }
 
-    // if(indMore != null){
-    //   try{
-    //     Library.more = Boolean.parseBoolean(args[indMore]) && Library.debug;
-    //   }catch(IndexOutOfBoundsException ex){
-    //     Library.more = false;
-    //   }
-    // }
     // Sets the PrintStream
     if( p != null) Library.out = p;
   }
@@ -125,13 +116,11 @@ public abstract class Library{
       if(Library.debug)
         Library.out.println("In: " + Thread.currentThread().getStackTrace()[2].getClassName() + "." + Thread.currentThread().getStackTrace()[2].getMethodName() + "\n\t->DEBUG: " + msg + "\n");
     }else{
-      Library.out.print("\n\t->DEBUG: " + msg + "\n");
+      Library.out.print("\t->DEBUG: " + msg + "\n");
       Arrays.stream(Thread.currentThread().getStackTrace(), 2, Thread.currentThread().getStackTrace().length).filter(
         (w) -> w != null).forEach(
         (x) -> Library.out.print(x.getClassName() + "." + x.getMethodName()  + "\n"));
     }
-
-    // echo(Thread.currentThread().getStackTrace()[2].getClassName(), Thread.currentThread().getStackTrace()[2].getMethodName(), msg);
   }
 
 }

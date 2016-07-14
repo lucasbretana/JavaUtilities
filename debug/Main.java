@@ -6,12 +6,16 @@ import java.util.Arrays;
 public class Main{
   public static String msg = "BLA BLA BLA BLA";
   public static void main(String []args){
-    System.out.println("This is how a full debug mode shows the message!");
+    System.out.println("---------------------------------------------------");
+    System.out.println("- This is how a full debug mode shows the message! -");
+    System.out.println("----------------------------------------------------");
     args = new String[]{"true", "true"};
     Library.makeStart(args);
     test();
-    System.out.println("\n--------- Just to separet the messages ---------\n");
-    System.out.println("This is how a debug mode shows the message!");
+    System.out.println();
+    System.out.println("---------------------------------------------------");
+    System.out.println("- This is how a full debug mode shows the message! -");
+    System.out.println("----------------------------------------------------");
     args = new String[]{"true", "false"};
     Library.makeStart(args);
     testDebug();
