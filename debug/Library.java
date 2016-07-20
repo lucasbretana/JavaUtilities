@@ -5,10 +5,11 @@ import java.util.Arrays;
 import java.util.Stack;
 
 public abstract class Library{
-  /** * Is the more debug option, the default is false */
-  private static boolean debug = false;
+  private static boolean alreadyStarted = false;
+  /** * Is the more debug option, the default is true */
+  protected static boolean debug = true;
   /** * Is the debug option, the default is false */
-  private static boolean more = false;
+  protected static boolean more = false;
   /** * Is the stream for output, the default is System.err */
   private static PrintStream out = System.err;
 
@@ -62,12 +63,15 @@ public abstract class Library{
   }
 
   /**
+   * Can only be called one time. If called more than that, wont change anything
    * @param args is the parameters for debug.
    * @param indDeb is the index for the debug option.
    * @param indMore is the index for the more debug option.
    * @param p is the stream for output.
    */
   public static void makeStart(String[] args, Integer indDeb, Integer indMore, PrintStream p){
+    if(Library.alreadyStarted) return;
+    Library.alreadyStarted = true;
     // Sets the debug option. If the value is 1 ou 'true', the Library.debug is set to true
     if( (args.length >= (indDeb + 1)) && (args[indDeb] != null) && (!args[indDeb].equalsIgnoreCase(" ")) ){
       try {
@@ -81,7 +85,7 @@ public abstract class Library{
       return;
     }
     // Sets the more debug option. If the value is 1 ou 'true', the Library.more is set to true
-    if( (args.length >= (indMore + 1)) && (args[indMore] != null) && (!args[indMore].equalsIgnoreCase(" ")) ){
+    if( (indMore != null) && (args.length >= (indMore + 1)) && (args[indMore] != null) && (!args[indMore].equalsIgnoreCase(" ")) ){
       try {
         Library.more = Integer.parseInt(args[indMore]) == 1;
       } catch (NumberFormatException ex) {
@@ -122,7 +126,8 @@ public abstract class Library{
         (w) -> w != null).forEach(
         (x) -> s.push(x.getClassName() + "." + x.getMethodName()  + "\n"));
 
-      s.forEach(() -> Library.out.print(s.pop().toString()));
+      while(!s.empty())
+        Library.out.print(s.pop().toString());
 
       Library.out.print("\t->DEBUG: " + msg + "\n");
     }

@@ -6,19 +6,30 @@ import java.util.Arrays;
 public class Main{
   public static String msg = "BLA BLA BLA BLA";
   public static void main(String []args){
+    System.out.println("------------------------------------------------------------------------------");
+    System.out.println("----------------------- This is only a default message -----------------------");
+    System.out.println("----------------------------- See documentation ------------------------------");
+    System.out.println("------------------------------------------------------------------------------");
+    System.out.println("");
+    
+    args = new String[]{"true", "true"};
+    Library.makeStart(args);
     System.out.println("----------------------------------------------------");
     System.out.println("- This is how a full debug mode shows the message! -");
     System.out.println("----------------------------------------------------");
-    args = new String[]{"true", "true"};
-    Library.makeStart(args);
     test();
+    Library.more = false;
     System.out.println();
     System.out.println("----------------------------------------------------");
     System.out.println("- This is how a full debug mode shows the message! -");
     System.out.println("----------------------------------------------------");
-    args = new String[]{"true", "false"};
-    Library.makeStart(args);
     testDebug();
+
+    System.out.println("");
+    System.out.println("------------------------------------------------------------------------------");
+    System.out.println("----------------------------- See documentation ------------------------------");
+    System.out.println("----------------------- This is only a default message -----------------------");
+    System.out.println("------------------------------------------------------------------------------");
   }
 
   private static void test(){
