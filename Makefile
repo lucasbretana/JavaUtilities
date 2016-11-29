@@ -29,7 +29,7 @@ documentation: $(addprefix src/debug/, $(addsuffix .java, $(CLASS)))
 	cd ..
 
 jar: $(addprefix bin/debug/, $(addsuffix .class, $(CLASS))) $(MANIFEST)
-	$(JR) $(JR_FLAG)cfm $(TARGET)_$(VERSION).jar $(MANIFEST) -C bin/ . doc/*
+	$(JR) $(JR_FLAG)cfm $(TARGET)_$(VERSION).jar $(MANIFEST) -C bin/ . doc/* README.md
 
 clear:
 	$(RM) $(TARGET)_$(VERSION).jar 
