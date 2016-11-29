@@ -1,0 +1,13 @@
+TODO (lucas): Add a method to make print even without debug optin, causa type System.out.println .. is to damm boring
+TODO (lucas): Make the debaug index for debug parameter be the last ones
+
+TODO (lucas): Make the outpur for the more debug be like the exceptions' one. For example:
+	java.io.NotSerializableException: dropbox.BasicPrimitive
+		at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1184)
+		at java.io.ObjectOutputStream.defaultWriteFields(ObjectOutputStream.java:1548)
+		at java.io.ObjectOutputStream.writeSerialData(ObjectOutputStream.java:1509)
+		at java.io.ObjectOutputStream.writeOrdinaryObject(ObjectOutputStream.java:1432)
+		at java.io.ObjectOutputStream.writeObject0(ObjectOutputStream.java:1178)
+		at java.io.ObjectOutputStream.writeObject(ObjectOutputStream.java:348)
+		at dropbox.BasicPrimitive.doBasicWrite(BasicPrimitive.java:330)
+		at tests.Main.main(Main.java:51)
