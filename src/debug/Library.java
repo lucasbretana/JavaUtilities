@@ -108,7 +108,12 @@ public abstract class Library{
   @Deprecated
   private static void echo(String theClass, String theMethod, String msg){
     if(!Library.more)
-      if (Library.debug) Library.out.println("In: " + theClass + "." + theMethod + "\n\t->DEBUG: " + msg + "\n");
+      if (Library.debug) {
+        Library.out.print("->DEBUG\r");
+        Arrays.stream(msg.split("\n")).forEach(i -> Library.out.println("\t> " + i + "."));
+        Library.out.println("\t" + theClass + "." + theMethod + "\n");
+      }
+
   }
 
   /**
@@ -117,20 +122,33 @@ public abstract class Library{
    * @param msg is the message to be displayed
    */
   public static void echo(String msg){
-    Stack<String> s = new Stack<String>();
+    // Stack<String> s = new Stack<String>();
     if(!Library.isMoreDebug()){
-      if(Library.debug)
-        Library.out.println("In: " + Thread.currentThread().getStackTrace()[2].getClassName() + "." + Thread.currentThread().getStackTrace()[2].getMethodName() + "\n\t->DEBUG: " + msg + "\n");
+      if(Library.debug){
+        Library.out.print("->DEBUG\r");
+        Arrays.stream(msg.split("\n")).forEach(i -> Library.out.println("\t> " + i + "."));
+        Library.out.println("\t" + Thread.currentThread().getStackTrace()[2].getClassName() + "." + Thread.currentThread().getStackTrace()[2].getMethodName() + "\n");
+      }
     }else{
-      Arrays.stream(Thread.currentThread().getStackTrace(), 2, Thread.currentThread().getStackTrace().length).filter(
-        (w) -> w != null).forEach(
-        (x) -> s.push(x.getClassName() + "." + x.getMethodName()  + "\n"));
+      Library.out.print("->DEBUG\r");
+      Arrays.stream(msg.split("\n")).forEach(i -> Library.out.println("\t> " + i + "."));
+      Arrays.stream(Thread.currentThread().getStackTrace(), 2, Thread.currentThread().getStackTrace().length).filter((w) -> w != null)
+        .forEach((x) -> Library.out.println("\t" + x.getClassName() + "." + x.getMethodName()));
 
-      while(!s.empty())
-        Library.out.print(s.pop().toString());
-
-      Library.out.print("\t->DEBUG: " + msg + "\n");
+      // while(!s.empty())
+      //   Library.out.print(s.pop().toString());
+      //
+      // Library.out.print("\t->DEBUG: " + msg + "\n");
     }
+  }
+
+  /**
+   * Prints the message if is in denug mode, also if in more debug, print extra trace.
+   * It it is called from a static context then the class will be 'java.lang.StackTraceElement'
+   * @param objAsMessage is any object, that will be converted to string (.toString()), so, consider override this methos if you wanna send an object here
+   */
+  public static void echo(Object objAsMessage){
+    Library.echo(objAsMessage.toString());
   }
 
 }
