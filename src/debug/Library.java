@@ -142,4 +142,13 @@ public abstract class Library{
     }
   }
 
+  /**
+   * Prints the message if is in denug mode, also if in more debug, print extra trace.
+   * It it is called from a static context then the class will be 'java.lang.StackTraceElement'
+   * @param objAsMessage is any object, that will be converted to string (.toString()), so, consider override this methos if you wanna send an object here
+   */
+  public static void echo(Object objAsMessage){
+    Library.echo(objAsMessage.toString());
+  }
+
 }
