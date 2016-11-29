@@ -109,7 +109,8 @@ public abstract class Library{
   private static void echo(String theClass, String theMethod, String msg){
     if(!Library.more)
       if (Library.debug) {
-        Arrays.stream(msg.split("\n")).forEach(i -> Library.out.println("->DEBUG: " + i + "."));
+        Library.out.print("->DEBUG\r");
+        Arrays.stream(msg.split("\n")).forEach(i -> Library.out.println("\t> " + i + "."));
         Library.out.println("\t" + theClass + "." + theMethod + "\n");
       }
 
@@ -124,13 +125,20 @@ public abstract class Library{
     // Stack<String> s = new Stack<String>();
     if(!Library.isMoreDebug()){
       if(Library.debug){
-        Arrays.stream(msg.split("\n")).forEach(i -> Library.out.println("->DEBUG: " + i + "."));
+        Library.out.print("->DEBUG\r");
+        Arrays.stream(msg.split("\n")).forEach(i -> Library.out.println("\t> " + i + "."));
         Library.out.println("\t" + Thread.currentThread().getStackTrace()[2].getClassName() + "." + Thread.currentThread().getStackTrace()[2].getMethodName() + "\n");
       }
     }else{
-      Arrays.stream(msg.split("\n")).forEach(i -> Library.out.println("->DEBUG: " + i + "."));
+      Library.out.print("->DEBUG\r");
+      Arrays.stream(msg.split("\n")).forEach(i -> Library.out.println("\t> " + i + "."));
       Arrays.stream(Thread.currentThread().getStackTrace(), 2, Thread.currentThread().getStackTrace().length).filter((w) -> w != null)
         .forEach((x) -> Library.out.println("\t" + x.getClassName() + "." + x.getMethodName()));
+
+      // while(!s.empty())
+      //   Library.out.print(s.pop().toString());
+      //
+      // Library.out.print("\t->DEBUG: " + msg + "\n");
     }
   }
 

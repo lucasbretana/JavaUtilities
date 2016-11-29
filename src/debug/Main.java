@@ -35,9 +35,9 @@ public class Main{
   }
 
   public static void testDebug(){
-    Library.echo("This is a default debug message!");
+    Library.echo("This is a default debug message!\nMultiple line");
   }
   public static void testMoreDebug(){
-    Library.echo("This is a default debug message!");
+    Library.echo("This is a default debug message!\nMultiple line");
   }
 }
